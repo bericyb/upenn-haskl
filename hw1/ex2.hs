@@ -1,17 +1,11 @@
-import Data.Bits (Bits (xor))
-
 type Peg = String
 
 type Move = (Peg, Peg)
 
 hanoi :: Integer -> Peg -> Peg -> Peg -> [Move]
-hanoi numDisks peg1 peg2 peg3
-  | numDisks >= 1 = 
-  | numDisks <= 0 = 
+hanoi n a b c
+  | n == 0 = [(a, b)]
+  | otherwise = hanoi (n - 1) a c b ++ [(a, b)] ++ hanoi (n - 1) c b a
 
-toStack :: Integer -> [Integer]
-toStack x
-  | x < 1 = []
-  | otherwise = x : toStack (x - 1)
-
-
+main = do
+  print (hanoi 3 "a" "b" "c")
